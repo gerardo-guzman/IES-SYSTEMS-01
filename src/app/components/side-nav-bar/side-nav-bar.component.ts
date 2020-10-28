@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav-bar',
@@ -11,13 +13,19 @@ export class SideNavBarComponent implements OnInit {
     { name: 'Dashboard', route: 'dashboard' },
     { name: 'Componente 1', route: 'component-01' },
   ]
-  constructor() { }
+  constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log({
+      mssg: 'Tiene acceso?',
+      accces:this.authSrv.hasAccess()
+    });
   }
 
+
   logOut() {
-    console.log('sali');
+    this.authSrv.destroySession();
+    this.router.navigate(['/login'])
   }
 
 }

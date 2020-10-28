@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators, } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,11 @@ export class LoginComponent implements OnInit {
     contrasena: this.passwordFormControl
   });
 
-  constructor(private authSrv: AuthService) { }
+  constructor(
+    private authSrv: AuthService, 
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -37,9 +43,29 @@ export class LoginComponent implements OnInit {
       this.logInFormGroup.value.contrasena
     ).subscribe(({resultado}: any) => {
       if (resultado) {
-        this.authSrv.saveSession(resultado);
+        if (resultado.id_rol === 5) {
+          this.authSrv.saveSession(resultado);
+          this.router.navigate(['/app']);
+        } else {
+          this.snackBar.open(
+            'Lo sentimos, el usuario que has ingresado no tiene permisos para acceder.',
+            'Aceptar.',
+            {
+              duration: 2500,
+              panelClass: ['matsnackbar-warn']
+            }
+          );
+        }
+        //this.authSrv.saveSession(resultado);
       } else {
-        console.log('resultado nulo');
+        this.snackBar.open(
+          'Usuario o contraseña incorrectos.',
+          'Aceptar.',
+          {
+            duration: 2500,
+            panelClass: ['matsnackbar-warn']
+          }
+        );
       }
     }, (err) => {
       console.log(err)
