@@ -38,7 +38,7 @@ export class ComponentOneComponent implements OnInit {
     return array.reduce((prevV, currentV) => ({
       ...prevV,
       [currentV.name]: currentV.value
-    }));
+    }), {});
   }
 
   convertObjToArray(obj: Object) {
