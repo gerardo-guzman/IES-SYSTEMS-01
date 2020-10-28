@@ -20,7 +20,7 @@ export class ComponentOneComponent implements OnInit {
   }
 
   ejercicioUno() {
-    console.log('EJERCICIO 1 - OBJETO A ARRAY');
+    console.log('EJERCICIO 1 - ARRAY A OBJETO');
     const array = [ { value: 1 , name: 'CampoUno'}, { value: 2 , name: 'CampoDos'}, { value: 3 , name: 'CampoTres'}, { value: 4 , name: 'CampoCuatro'}, { value: 5 , name: 'CampoCinco'}, { value: 6 , name: 'CampoSeis'}, ]; 
     const objConverted = this.convertArrayToObj(array);
     console.log(objConverted);
@@ -28,7 +28,7 @@ export class ComponentOneComponent implements OnInit {
   }
 
   ejercicioDos() {
-    console.log('EJERCICIO 2 - ARRAY A OBJETO');
+    console.log('EJERCICIO 2 - OBJETI A ARRAY');
     const obj =  { CampoUno: 1, CampoDos: 2, CampoTres: 3, CampoCuatro: 4, CampoCinco: 5, CampoSeis: 6 };
     console.log(this.convertObjToArray(obj));
     console.log('--------------------------------');
