@@ -1,0 +1,34 @@
+<div fxFill>
+    <mat-drawer-container [hasBackdrop]="true" fxFill>
+        <mat-drawer #drawer mode="over" class="side-nav-pad">
+            <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap=".2rem">
+                <button mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon>
+                      <span>arrow_back</span>
+                    </mat-icon>
+                </button>
+                <h1>Rutas</h1>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let nav of navOptions" 
+                    [routerLink]="nav.route"
+                    routerLinkActive="active">
+                    {{nav.name}}
+                </a>
+                <mat-divider></mat-divider>
+                <a mat-list-item routerLinkActive="active" (click)="logOut()">Cerrar sesión</a>
+            </mat-nav-list>
+        </mat-drawer>
+        <mat-drawer-content>
+            <mat-toolbar>
+                <button mat-icon-button aria-label="Menu" (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                  </button>
+                  <span>Dashboard app</span>
+            </mat-toolbar>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+
+</div>

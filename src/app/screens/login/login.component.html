@@ -1,0 +1,36 @@
+<div fxFill class="container">
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5rem" fxFill>
+            <mat-card>
+                <div class="spacer" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap=".5rem">
+                    <button mat-fab color="primary">
+                        <mat-icon>lock</mat-icon>
+                    </button>
+                </div>
+                <form fxLayout="column" fxLayoutAlign="center" fxLayoutGap=".5rem" style="width: 20rem" (submit)="logIn($event)" [formGroup]="logInFormGroup">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput
+                            nonecomplete="off"
+                            placeholder="ej. Jerrystroke"
+                            type="text"
+                            required
+                            formControlName="usuario"
+                        >
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput 
+                            nonecomplete="off"
+                            name="poassword" 
+                            type="password"
+                            required
+                            formControlName="contrasena"
+                        >
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="logInFormGroup.invalid">INICIAR SESIÓN
+                    </button>
+                </form>
+        </mat-card>
+        </div>
+</div>
